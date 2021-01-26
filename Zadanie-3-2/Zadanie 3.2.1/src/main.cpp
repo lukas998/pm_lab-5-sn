@@ -1,8 +1,6 @@
 #include<Arduino.h>
 #include <LiquidCrystal.h>
 
-#define buttonUp 11
-#define buttonDown 13
 
 LiquidCrystal lcd(9,8,7,6,5,4);
 int menu =1;
@@ -10,15 +8,15 @@ int menu =1;
 
 void setup() {
   lcd.begin(16, 2);
-  pinMode(buttonUp, INPUT_PULLUP);
-  pinMode(buttonDown, INPUT_PULLUP);
 
 }
 
 void loop() {
   dispMenu();
-  changeMenu();
-
+  delay(1000);
+  menu++;
+  if(menu>3){
+  menu = 1;}
 
 }
 
@@ -40,20 +38,4 @@ void dispMenu(void){
   	break;
   }
 
-}
-
-void changeMenu(void){
-  if(digitalRead(buttonUp)==HIGH){
-  menu =  menu +1;
-    if (menu>3){
-    menu =1;}
-  }
-
- if(digitalRead(buttonDown)==HIGH){
-  menu =menu -1;
-    if (menu<1){
-    menu =3;}
-  }
- 
-  
 }
